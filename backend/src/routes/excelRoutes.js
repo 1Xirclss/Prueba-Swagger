@@ -1,16 +1,19 @@
-import { Router } from 'express';
-import {
-  exportProducts,
-  getExcelFile,
-  importProducts,
-} from '../controllers/excelController.js';
+import express from 'express';
+import * as excelController from '../controllers/excelController.js';
 import { uploadExcel } from '../middlewares/uploadMiddleware.js';
 
-const router = Router();
+const router = express.Router();
 
-router.get('/export', exportProducts);
-router.get('/file', getExcelFile);
-router.post('/import', uploadExcel.single('file'), importProducts);
+router
+  .route('/export')
+  .get(excelController.exportProducts);
+
+router
+  .route('/file')
+  .get(excelController.getExcelFile);
+
+router
+  .route('/import')
+  .post(uploadExcel.single('file'), excelController.importProducts);
 
 export default router;
-

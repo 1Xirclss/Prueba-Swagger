@@ -1,24 +1,18 @@
 import express from 'express';
-import {
-    createCategory,
-    getCategories,
-    deleteCategory,
-    getCategoryById,
-    updateCategory
-} from '../controllers/categoryController.js';
+import * as categoryController from '../controllers/categoryController.js';
 import { protect } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.route('/')
-    .post(protect, createCategory)
-    .get(getCategories);
+router
+  .route('/')
+  .get(categoryController.getCategories)
+  .post(protect, categoryController.createCategory);
 
-router.route('/:id')
-    .delete(protect, deleteCategory)
-    .get(getCategoryById)
-    .put(protect, updateCategory);
-
-
+router
+  .route('/:id')
+  .get(categoryController.getCategoryById)
+  .put(protect, categoryController.updateCategory)
+  .delete(protect, categoryController.deleteCategory);
 
 export default router;

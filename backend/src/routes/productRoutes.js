@@ -1,27 +1,30 @@
-import { Router } from "express";
-import {
-  createProduct,
-  deleteProduct,
-  getProductById,
-  getProducts,
-  updateProduct,
-  deleteProductByBarcode,
-  updateProductByBarcode,
-  getAllProducts,
-  updateVariantStock,
-} from "../controllers/productController.js";
+import express from 'express';
+import * as productController from '../controllers/productController.js';
 
-const router = Router();
+const router = express.Router();
 
-router.route("/").get(getProducts).post(createProduct);
-router.delete("/barcode/:barcode", deleteProductByBarcode);
-router.put("/barcode/:barcode", updateProductByBarcode);
-router.route("/allProducts").get(getAllProducts);
-router.put("/:productId/variant-stock", updateVariantStock);
 router
-  .route("/:id")
-  .get(getProductById)
-  .put(updateProduct)
-  .delete(deleteProduct);
+  .route('/')
+  .get(productController.getProducts)
+  .post(productController.createProduct);
+
+router
+  .route('/allProducts')
+  .get(productController.getAllProducts);
+
+router
+  .route('/barcode/:barcode')
+  .put(productController.updateProductByBarcode)
+  .delete(productController.deleteProductByBarcode);
+
+router
+  .route('/:productId/variant-stock')
+  .put(productController.updateVariantStock);
+
+router
+  .route('/:id')
+  .get(productController.getProductById)
+  .put(productController.updateProduct)
+  .delete(productController.deleteProduct);
 
 export default router;

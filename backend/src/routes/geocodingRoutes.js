@@ -1,9 +1,10 @@
 import express from 'express';
-import { reverseGeocode } from '../controllers/geocodingController.js';
+import * as geocodingController from '../controllers/geocodingController.js';
 
 const router = express.Router();
 
-// Public route - no authentication needed for geocoding
-router.get('/nominatim', reverseGeocode);
+router
+  .route('/nominatim')
+  .get(geocodingController.reverseGeocode);
 
 export default router;

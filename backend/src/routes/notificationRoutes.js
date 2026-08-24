@@ -1,15 +1,18 @@
 import express from 'express';
-import { getNotifications, markAsRead, deleteNotification } from '../controllers/notificationController.js';
+import * as notificationController from '../controllers/notificationController.js';
 
 const router = express.Router();
 
-// Get all notifications
-router.get('/', getNotifications);
+router
+  .route('/')
+  .get(notificationController.getNotifications);
 
-// Mark as read
-router.put('/:id/read', markAsRead);
+router
+  .route('/:id/read')
+  .put(notificationController.markAsRead);
 
-// Delete a notification
-router.delete('/:id', deleteNotification);
+router
+  .route('/:id')
+  .delete(notificationController.deleteNotification);
 
 export default router;

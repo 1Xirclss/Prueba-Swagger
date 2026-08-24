@@ -1,15 +1,17 @@
 import express from 'express';
-import { getClosureDates, addClosureDate, deleteClosureDate, updateClosureDate } from '../controllers/closureDateController.js';
+import * as closureDateController from '../controllers/closureDateController.js';
 import { protect } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-// Public route - anyone can view closure dates
-router.get('/', getClosureDates);
+router
+  .route('/')
+  .get(closureDateController.getClosureDates)
+  .post(protect, closureDateController.addClosureDate);
 
-// Protected routes - only authenticated users can modify
-router.post('/', protect, addClosureDate);
-router.patch('/:id', protect, updateClosureDate);
-router.delete('/:id', protect, deleteClosureDate);
+router
+  .route('/:id')
+  .patch(protect, closureDateController.updateClosureDate)
+  .delete(protect, closureDateController.deleteClosureDate);
 
 export default router;

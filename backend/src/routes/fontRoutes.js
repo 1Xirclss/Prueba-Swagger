@@ -1,12 +1,16 @@
 import express from 'express';
-import { uploadFont, getFonts, deleteFont } from '../controllers/fontController.js';
+import * as fontController from '../controllers/fontController.js';
 import { uploadImage } from '../middlewares/imageUploadMiddleware.js';
 
 const router = express.Router();
 
-// Uses uploadImage middleware which we updated to allow fonts
-router.post('/', uploadImage.single('font'), uploadFont);
-router.get('/', getFonts);
-router.delete('/:id', deleteFont);
+router
+  .route('/')
+  .get(fontController.getFonts)
+  .post(uploadImage.single('font'), fontController.uploadFont);
+
+router
+  .route('/:id')
+  .delete(fontController.deleteFont);
 
 export default router;

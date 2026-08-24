@@ -3,20 +3,24 @@ import * as cartController from '../controllers/cartController.js';
 
 const router = express.Router();
 
-// GET /api/cart - Obtener carrito
-router.get('/', cartController.getCart);
+router
+  .route('/')
+  .get(cartController.getCart);
 
-// POST /api/cart/add - Agregar producto al carrito
-router.post('/add', cartController.addToCart);
+router
+  .route('/add')
+  .post(cartController.addToCart);
 
-// PUT /api/cart/update/:itemId - Actualizar cantidad de un item
-router.put('/update/:itemId', cartController.updateCartItem);
+router
+  .route('/update/:itemId')
+  .put(cartController.updateCartItem);
 
-// DELETE /api/cart/remove/:itemId - Eliminar item del carrito
-router.delete('/remove/:itemId', cartController.removeFromCart);
+router
+  .route('/remove/:itemId')
+  .delete(cartController.removeFromCart);
 
-// DELETE /api/cart/clear - Limpiar carrito
-router.delete('/clear', cartController.clearCart);
+router
+  .route('/clear')
+  .delete(cartController.clearCart);
 
 export default router;
-
