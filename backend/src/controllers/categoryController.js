@@ -1,6 +1,12 @@
 import Category from '../models/Category.js';
 
 export const createCategory = async (req, res, next) => {
+  /*  #swagger.tags = ['Categories']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { $ref: "#/components/schemas/Category" } } }
+      } 
+  */
   try {
     const { name, description, icon } = req.body;
 
@@ -95,6 +101,12 @@ export const getCategoryById = async (req, res) => {
 
 // PUT /api/categories/:id - Actualizar una categoría
 export const updateCategory = async (req, res, next) => {
+  /*  #swagger.tags = ['Categories']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { $ref: "#/components/schemas/Category" } } }
+      } 
+  */
   try {
     const { name, description, featured, order, icon } = req.body;
     const category = await Category.findById(req.params.id);
@@ -138,6 +150,12 @@ export const updateCategory = async (req, res, next) => {
 
 // POST /api/categories/:id/subcategories - Agregar subcategoría
 export const addSubcategory = async (req, res, next) => {
+  /*  #swagger.tags = ['Categories']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { type: "object", properties: { name: { type: "string" }, items: { type: "array", items: { type: "string" } } } } } }
+      } 
+  */
   try {
     const { name, items } = req.body;
     const category = await Category.findById(req.params.id);
@@ -185,6 +203,12 @@ export const addSubcategory = async (req, res, next) => {
 
 // PUT /api/categories/:id/subcategories/:subcategoryId - Actualizar subcategoría
 export const updateSubcategory = async (req, res, next) => {
+  /*  #swagger.tags = ['Categories']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { type: "object", properties: { name: { type: "string" }, items: { type: "array", items: { type: "string" } } } } } }
+      } 
+  */
   try {
     const { name, items } = req.body;
     const category = await Category.findById(req.params.id);

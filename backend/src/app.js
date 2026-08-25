@@ -1,6 +1,12 @@
 import cors from "cors";
 import express from "express";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
+import swaggerUi from 'swagger-ui-express';
+import fs from 'fs';
+
+const swaggerDocument = JSON.parse(
+  fs.readFileSync(new URL('../swagger.json', import.meta.url))
+);
 
 import barcodeRoutes from "./routes/barcodeRoutes.js";
 import excelRoutes from "./routes/excelRoutes.js";
@@ -36,6 +42,8 @@ app.use(express.json());
 app.get("/ping", (req, res) => {
   res.json({ status: "OK", message: "Pong" });
 });
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);

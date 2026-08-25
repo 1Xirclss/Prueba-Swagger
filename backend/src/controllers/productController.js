@@ -14,6 +14,12 @@ const normalizeImages = (images) => {
 };
 
 export const updateProduct = async (req, res, next) => {
+  /*  #swagger.tags = ['Products']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { $ref: "#/components/schemas/Product" } } }
+      } 
+  */
   try {
     const {
       name,
@@ -169,6 +175,12 @@ export const updateProduct = async (req, res, next) => {
 };
 
 export const createProduct = async (req, res, next) => {
+  /*  #swagger.tags = ['Products']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { $ref: "#/components/schemas/Product" } } }
+      } 
+  */
   try {
     const {
       name,
@@ -513,6 +525,12 @@ export const deleteProductByBarcode = async (req, res, next) => {
 };
 
 export const updateProductByBarcode = async (req, res, next) => {
+  /*  #swagger.tags = ['Products']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { type: "object", properties: { name: { type: "string" }, stock: { type: "number" }, price: { type: "number" }, location: { type: "string" }, barcode: { type: "string" }, description: { type: "string" } } } } }
+      } 
+  */
   // This might need substantial updates if used, but sticking to ID update is safer for full edits.
   // For now, I will update it to match similar logic or keep it minimal if only used for quick updates.
   // Given the complexity of new fields, it's better to reuse updateProduct logic or deprecate this if not strictly needed for quick scanner updates.
@@ -551,6 +569,12 @@ export const updateProductByBarcode = async (req, res, next) => {
 
 // Update stock for a specific variant
 export const updateVariantStock = async (req, res, next) => {
+  /*  #swagger.tags = ['Products']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { type: "object", properties: { variantId: { type: "string" }, size: { type: "string" }, color: { type: "string" }, stockChange: { type: "number" }, newStock: { type: "number" } } } } }
+      } 
+  */
   try {
     const { productId } = req.params;
     const { variantId, size, color, stockChange, newStock } = req.body;

@@ -7,7 +7,7 @@ import app from './app.js';
 import connectDB from './database.js';
 import { startInventoryJobs } from './utils/inventoryJobs.js';
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
   await connectDB();

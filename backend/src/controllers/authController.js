@@ -13,6 +13,12 @@ const generateToken = (userId) => {
 
 // Solicitar código de verificación para registro
 export const requestRegistrationCode = async (req, res) => {
+  /*  #swagger.tags = ['Auth']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { type: "object", properties: { email: { type: "string", example: "user@example.com" } } } } }
+      } 
+  */
   try {
     const { email } = req.body;
 
@@ -60,6 +66,12 @@ export const requestRegistrationCode = async (req, res) => {
 
 // Verificar código y registrar usuario
 export const verifyCodeAndRegister = async (req, res) => {
+  /*  #swagger.tags = ['Auth']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { $ref: "#/components/schemas/User" } } }
+      } 
+  */
   try {
     const { email, code, password } = req.body;
 
@@ -166,6 +178,12 @@ export const verifyCodeAndRegister = async (req, res) => {
 
 // Login
 export const login = async (req, res) => {
+  /*  #swagger.tags = ['Auth']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { type: "object", properties: { email: { type: "string", example: "user@example.com" }, password: { type: "string", example: "123456" } } } } }
+      } 
+  */
   try {
     const { email, password } = req.body;
     console.log('Login attempt for:', email);
@@ -209,6 +227,12 @@ export const login = async (req, res) => {
 
 // Solicitar código de recuperación de contraseña
 export const requestPasswordReset = async (req, res) => {
+  /*  #swagger.tags = ['Auth']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { type: "object", properties: { email: { type: "string", example: "user@example.com" } } } } }
+      } 
+  */
   try {
     const { email } = req.body;
 
@@ -259,6 +283,12 @@ export const requestPasswordReset = async (req, res) => {
 
 // Verificar código y restablecer contraseña
 export const verifyCodeAndResetPassword = async (req, res) => {
+  /*  #swagger.tags = ['Auth']
+      #swagger.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { type: "object", properties: { email: { type: "string", example: "user@example.com" }, code: { type: "string", example: "123456" }, newPassword: { type: "string", example: "newpass123" } } } } }
+      } 
+  */
   try {
     const { email, code, newPassword } = req.body;
 
