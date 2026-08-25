@@ -22,7 +22,7 @@ const verificationCodeSchema = new mongoose.Schema(
       required: true,
       default: () => new Date(Date.now() + 15 * 60 * 1000), // 15 minutos
     },
-    used: {
+    used: { 
       type: Boolean,
       default: false,
     },

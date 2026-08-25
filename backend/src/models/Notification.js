@@ -11,7 +11,7 @@ const notificationSchema = new mongoose.Schema({
         required: true
     },
     metadata: {
-        type: Object, // Flexible field for orderId, productId, etc.
+        type: Object,
         default: {}
     },
     isRead: {

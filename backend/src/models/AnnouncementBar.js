@@ -20,7 +20,7 @@ const announcementBarSchema = new mongoose.Schema({
     backgroundColor: {
         type: String,
         default: '#DC2626', // Red color by default
-        trim: true,
+        trim: true, 
     },
     textColor: {
         type: String,

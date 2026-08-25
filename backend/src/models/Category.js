@@ -50,21 +50,7 @@ const categorySchema = new mongoose.Schema(
     }
 );
 
-// Middleware has been removed to avoid 'next is not a function' error.
-// Slug generation is now handled in the controller.
-/*
-categorySchema.pre('save', function (next) {
-    if (this.isModified('name') || this.isNew) {
-        this.slug = this.name
-            .toLowerCase()
-            .trim()
-            .replace(/[^\w\s-]/g, '')
-            .replace(/[\s_-]+/g, '-')
-            .replace(/^-+|-+$/g, '');
-    }
-    next();
-});
-*/
+
 
 const Category = mongoose.model('Category', categorySchema);
 
